@@ -23,7 +23,7 @@ abstract class User {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Parse cert to extract department, name and type (patient/nurse/doctor/agency)
+        //TODO Parse cert to extract department, name and type (patient/nurse/doctor/agency)
     }
 
     public String execute(Command command) {

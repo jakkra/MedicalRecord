@@ -4,7 +4,7 @@ package server;/*
 
 
 public abstract class Command {
-    protected String reqId;
+    protected String reqId = "-1";
 
     public Command(String reqId) {
         this.reqId = reqId;

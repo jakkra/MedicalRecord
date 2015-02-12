@@ -27,10 +27,14 @@ public class Database {
         return true;
     }
 
+    /**
+     * @param id id of patient to get from database
+     * @return Patient object containing fields from the database
+     */
     public Patient get(String id) {
         return null;
     }
 
 
-    //Either a SQL database or just a text file
+    //Either a SQL database or just a text file, w/e you like :)
 }
