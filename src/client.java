@@ -17,7 +17,8 @@ public class client {
 
     public static void main(String[] args) throws Exception {
         String host = null;
-        int port = -1;
+        String passwordInfo = null;
+        int port = 9876;
         for (int i = 0; i < args.length; i++) {
             System.out.println("args[" + i + "] = " + args[i]);
         }
@@ -27,7 +28,7 @@ public class client {
         }
         try { /* get input parameters */
             host = args[0];
-            port = Integer.parseInt(args[1]);
+            passwordInfo = args[1];
         } catch (IllegalArgumentException e) {
             System.out.println("USAGE: java client host port");
             System.exit(-1);
@@ -36,13 +37,13 @@ public class client {
         try { /* set up a key manager for client authentication */
             SSLSocketFactory factory = null;
             try {
-                char[] password = "password".toCharArray();
+                char[] password = passwordInfo.toCharArray();
                 KeyStore ks = KeyStore.getInstance("JKS");
                 KeyStore ts = KeyStore.getInstance("JKS");
                 KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
                 TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
                 SSLContext ctx = SSLContext.getInstance("TLS");
-                ks.load(new FileInputStream("clientkeystore"), password);  // keystore password (storepass)
+                ks.load(new FileInputStream(host+"keystore"), password);  // keystore password (storepass)
 				ts.load(new FileInputStream("clienttruststore"), password); // truststore password (storepass);
 				kmf.init(ks, password); // user password (keypass)
 				tmf.init(ts); // keystore can be used as truststore here
