@@ -4,11 +4,8 @@ package server;/*
 
 import javax.security.cert.X509Certificate;
 
-public class PatientUser extends User {
-    
-    public PatientUser(X509Certificate cert) {
+public class Nurse extends User {
+    public Nurse(X509Certificate cert) {
         super(cert);
     }
-
-
 }
