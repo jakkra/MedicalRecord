@@ -7,7 +7,7 @@ public class DeleteCommand extends Command {
     private String patientId;
 
     public DeleteCommand(String patientId) {
-        super(5);
+        super(patientId);
         this.patientId = patientId;
     }
 

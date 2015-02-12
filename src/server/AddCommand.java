@@ -3,13 +3,15 @@ package server;/*
  */
 
 public class AddCommand extends Command {
-    private final String id;
-    private final String something;
+    private String patientId;
+    private String something;
+    private String nurse;
 
-    public AddCommand(String id, String something) {
-        super(1);
-        this.id = id;
+    public AddCommand(String patientId, String something, String nurse) {
+        super(patientId);
+        this.patientId = patientId;
         this.something = something;
+        this.nurse = nurse;
     }
 
     @Override

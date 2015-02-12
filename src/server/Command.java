@@ -4,16 +4,15 @@ package server;/*
 
 
 public abstract class Command {
-    protected int securityLevel;
+    protected String reqId;
 
-    public Command(int securityLevel) {
-        this.securityLevel = securityLevel;
+    public Command(String reqId) {
+        this.reqId = reqId;
     }
 
     public abstract String doCommand(Database db);
 
-    public int getSecurityLevel() {
-        return securityLevel;
-
+    public String getRequestedId() {
+        return reqId;
     }
 }

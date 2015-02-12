@@ -7,7 +7,7 @@ public class ModifyCommand extends Command {
     private final String something;
 
     public ModifyCommand(String id, String something) {
-        super(4);
+        super(id);
         this.id = id;
         this.something = something;
     }

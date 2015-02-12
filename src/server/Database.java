@@ -2,23 +2,33 @@ package server;/*
  * Created by jakkra on 2015-02-12.
  */
 
+import commons.Patient;
+
 public class Database {
     private static Database db;
 
-    public static void  initiate() {
+    public static void initiate() {
         db = new Database();
     }
-    
+
     public static Database getInstance() throws Exception {
-        if(db != null){
+        if (db != null) {
             return db;
         } else {
             throw new Exception("Mist initiate Database first");
         }
     }
 
-    public void delete(String patientId) {
-        //TODO
+    /**
+     * @param patientId id of patient to remove
+     * @return true if patient was removed (in Database) false otherwise
+     */
+    public boolean delete(String patientId) {
+        return true;
+    }
+
+    public Patient get(String id) {
+        return null;
     }
 
 
