@@ -17,7 +17,7 @@ public class Database {
         }
     }
 
-    public void delete() {
+    public void delete(String patientId) {
         //TODO
     }
 

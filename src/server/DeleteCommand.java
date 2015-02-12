@@ -4,13 +4,16 @@ package server;/*
 
 public class DeleteCommand extends Command {
 
-    public DeleteCommand() {
+    private String patientId;
+
+    public DeleteCommand(String patientId) {
         super(5);
+        this.patientId = patientId;
     }
 
     @Override
     public String doCommand(Database db) {
-        db.delete();
+        db.delete(patientId);
         return null;
     }
 }

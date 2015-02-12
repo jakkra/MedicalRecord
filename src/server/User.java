@@ -3,9 +3,13 @@ package server;
 import javax.security.cert.X509Certificate;
 
 abstract class User {
+    public static int AGENCY = 1337;
+    public static int DOCTOR = 3;
+    public static int NURSE = 2;
+    public static int PATIENT = 1;
 
     protected String department;
-    protected String type;
+    protected int type; //AGENCY/DOCTOR...
 
     public User(X509Certificate cert) {
         //Parse cert to extract department and patient/nurse/doctor/agency

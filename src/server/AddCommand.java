@@ -3,10 +3,13 @@ package server;/*
  */
 
 public class AddCommand extends Command {
+    private final String id;
+    private final String something;
 
-
-    public AddCommand() {
+    public AddCommand(String id, String something) {
         super(1);
+        this.id = id;
+        this.something = something;
     }
 
     @Override

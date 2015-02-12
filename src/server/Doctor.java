@@ -8,6 +8,4 @@ public class Doctor extends User {
     public Doctor(X509Certificate cert) {
         super(cert);
     }
-    
-
 }

@@ -14,6 +14,7 @@ public class Server implements Runnable {
 
     public Server() {
         running = true;
+        Database.initiate();
     }
 
     public void run() {
