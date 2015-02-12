@@ -1,3 +1,5 @@
+package client;
+
 import java.net.*;
 import java.io.*;
 import javax.net.ssl.*;
@@ -6,10 +8,10 @@ import java.security.KeyStore;
 import java.security.cert.*;
 
 /*
- * This example shows how to set up a key manager to perform client
+ * This example shows how to set up a key manager to perform client.client
  * authentication.
  *
- * This program assumes that the client is not inside a firewall.
+ * This program assumes that the client.client is not inside a firewall.
  * The application can be modified to connect to a server outside
  * the firewall by following SSLSocketClientWithTunneling.java.
  */
@@ -23,18 +25,18 @@ public class client {
             System.out.println("args[" + i + "] = " + args[i]);
         }
         if (args.length < 2) {
-            System.out.println("USAGE: java client host port");
+            System.out.println("USAGE: java client.client host port");
             System.exit(-1);
         }
         try { /* get input parameters */
             host = args[0];
             passwordInfo = args[1];
         } catch (IllegalArgumentException e) {
-            System.out.println("USAGE: java client host port");
+            System.out.println("USAGE: java client.client host port");
             System.exit(-1);
         }
 
-        try { /* set up a key manager for client authentication */
+        try { /* set up a key manager for client.client authentication */
             SSLSocketFactory factory = null;
             try {
                 char[] password = passwordInfo.toCharArray();
