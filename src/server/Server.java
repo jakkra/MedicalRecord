@@ -1,12 +1,12 @@
 package server;
 
-import java.io.*;
-import java.net.*;
-import java.security.KeyStore;
-import java.util.List;
-import javax.net.*;
+import javax.net.ServerSocketFactory;
 import javax.net.ssl.*;
 import javax.security.cert.X509Certificate;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.security.KeyStore;
 
 public class Server implements Runnable {
     private ServerSocket serverSocket = null;
@@ -24,8 +24,8 @@ public class Server implements Runnable {
         String type = "TLS";
         try {
             ServerSocketFactory ssf = getServerSocketFactory(type);
-            ServerSocket ss = ssf.createServerSocket(port);
-            ((SSLServerSocket) ss).setNeedClientAuth(true); // enables client.client authentication
+            serverSocket = ssf.createServerSocket(port);
+            ((SSLServerSocket) serverSocket).setNeedClientAuth(true); // enables client.client authentication
         } catch (IOException e) {
             System.out.println("Unable to start server.Server: " + e.getMessage());
             e.printStackTrace();
@@ -38,7 +38,8 @@ public class Server implements Runnable {
                 X509Certificate cert = (X509Certificate) session.getPeerCertificateChain()[0];
                 String subject = cert.getSubjectDN().getName();
                 System.out.println("client.client connected");
-                System.out.println("client.client name (cert subject DN field): " + subject);
+                System.out.println("client.client getName: (cert subject DN field): " + subject);
+
 
                 ServerConnection serverConnection = new ServerConnection(socket, cert);
                 new Thread(serverConnection).start();
@@ -60,16 +61,17 @@ public class Server implements Runnable {
                 TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
                 KeyStore ks = KeyStore.getInstance("JKS");
                 KeyStore ts = KeyStore.getInstance("JKS");
-                
+
                 System.out.println("Enter server Keystore password");
                 String keystorePassword = new String(System.console().readPassword());
+
                 System.out.println("Enter server Truststore password");
                 String truststorePassword = new String(System.console().readPassword());
-                
-                ks.load(new FileInputStream("server/serverkeystore"), keystorePassword.toCharArray()); 
-                ts.load(new FileInputStream("server/servertruststore"), truststorePassword.toCharArray()); 
+
+                ks.load(new FileInputStream("serverkeystore"), keystorePassword.toCharArray());
+                ts.load(new FileInputStream("servertruststore"), truststorePassword.toCharArray());
                 kmf.init(ks, keystorePassword.toCharArray());
-                tmf.init(ts); 
+                tmf.init(ts);
                 ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
                 ssf = ctx.getServerSocketFactory();
                 return ssf;

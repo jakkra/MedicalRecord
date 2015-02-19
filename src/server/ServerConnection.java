@@ -1,5 +1,6 @@
 package server;
 
+import javax.naming.InvalidNameException;
 import javax.net.ssl.SSLSocket;
 import javax.security.cert.X509Certificate;
 import java.io.BufferedReader;
@@ -12,7 +13,7 @@ public class ServerConnection implements Runnable {
 
     private final SSLSocket socket;
     private final X509Certificate certificate;
-    private final User user;
+    private User user;
     private PrintWriter out;
     private BufferedReader in;
 
@@ -28,7 +29,12 @@ public class ServerConnection implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        user = UserFactory.buildUser(certificate);
+        try {
+            user = UserFactory.buildUser(certificate);
+        } catch (InvalidNameException e) {
+            System.err.println("Error building User");
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -37,6 +43,7 @@ public class ServerConnection implements Runnable {
         try {
             while ((clientMsg = in.readLine()) != null) {
                 System.out.println("received '" + clientMsg + "' from client.client");
+
                 Command command = CommandFactory.buildCommand(clientMsg);
                 String response = user.execute(command);
                 out.println(response);

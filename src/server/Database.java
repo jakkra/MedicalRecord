@@ -23,7 +23,7 @@ public class Database {
      * @param patientId id of patient to remove
      * @return true if patient was removed (in Database) false otherwise
      */
-    public boolean delete(String patientId) {
+    public boolean delete(String patientName) {
         return true;
     }
 
@@ -31,8 +31,13 @@ public class Database {
      * @param id id of patient to get from database
      * @return Patient object containing fields from the database
      */
-    public Patient get(String id) {
+    public Patient get(String patientName) {
         return null;
+    }
+
+    public boolean modifyPatient(Patient patient) {
+        return true;
+
     }
 
 

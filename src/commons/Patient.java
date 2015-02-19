@@ -4,19 +4,58 @@ package commons;/*
 
 
 public class Patient {
+
+    private final String name;
+    private final String department;
+    private final String doctor;
+    private final String nurse;
+    private final String information;
+
+    public Patient(String name, String Department, String doctor, String nurse, String information) {
+
+        this.name = name;
+        department = Department;
+        this.doctor = doctor;
+        this.nurse = nurse;
+        this.information = information;
+    }
+
     public String getName() {
-        return null;
+        return name;
     }
 
     public String getDepartment() {
-        return null;
+        return department;
     }
 
     public String getNurse() {
-        return null;
+        return nurse;
     }
 
     public String getDoctor() {
-        return null;
+        return doctor;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+
+    /**
+     * Build a Patient from a String.
+     * Format accepted:
+     *
+     * name;department;doctor;nurse;information
+     * @param s String to be used for building the Patient
+     * @return
+     */
+    public static Patient ParsePatient(String s) {
+        String[] data = s.split(";");
+        return new Patient(data[0], data[1], data[2], data[3], data[4]);
+
+    }
+
+    public String toString() {
+        return name + ";" + department + ";" + doctor + ";" + nurse + ";" + information;
     }
 }

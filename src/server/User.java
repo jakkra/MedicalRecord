@@ -2,8 +2,6 @@ package server;
 
 import commons.Patient;
 
-import javax.security.cert.X509Certificate;
-
 abstract class User {
     public static int AGENCY = 1337;
     public static int DOCTOR = 3;
@@ -13,17 +11,19 @@ abstract class User {
     private Database db = null;
 
     protected String department;
-    protected int type; //AGENCY/DOCTOR...
-    protected int nameOfPersonRequesting;
+    protected final int type; //AGENCY/DOCTOR...
+    protected final String nameOfPersonRequesting;
 
 
-    public User(X509Certificate cert) {
+    public User(String name, String department, int type) {
+        this.nameOfPersonRequesting = name;
+        this.department = department;
+        this.type = type;
         try {
             db = Database.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //TODO Parse cert to extract department, name and type (patient/nurse/doctor/agency)
     }
 
     public String execute(Command command) {
@@ -39,33 +39,34 @@ abstract class User {
         return "";
     }
 
+    //TODO type can be replaced by this instanceOf DOCTOR and so on...
     private boolean canExecuteCommand(Command command, Patient requestedPatient) {
         if (type == AGENCY) {
             return true;
         }
-        if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) { // Multiple patients on same department???????
+        if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) {
             return true;
         }
         if (command instanceof ReadCommand && type == NURSE) {
             if (requestedPatient.getDepartment().equals(department)) {
                 return true;
-            } else if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) { // What if two nurses has the same name???????
+            } else if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) {
                 return true;
             }
 
         } else if (command instanceof ModifyCommand && type == NURSE) {
-            if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) { // What if two nurses has the same name???????
+            if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) {
                 return true;
             }
         } else if (command instanceof ReadCommand && type == DOCTOR) {
             if (requestedPatient.getDepartment().equals(department)) {
                 return true;
-            } else if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) { // What if two nurses has the same name???????
+            } else if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) {
                 return true;
             }
 
         } else if (command instanceof ModifyCommand && type == DOCTOR) {
-            if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) { // What if two nurses has the same name???????
+            if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) {
                 return true;
             }
         } else if (command instanceof AddCommand && type == DOCTOR) {

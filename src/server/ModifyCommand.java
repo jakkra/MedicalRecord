@@ -2,18 +2,25 @@ package server;/*
  * Created by jakkra on 2015-02-12.
  */
 
-public class ModifyCommand extends Command {
-    private final String id;
-    private final String something;
+import commons.Patient;
 
-    public ModifyCommand(String id, String something) {
-        super(id);
-        this.id = id;
-        this.something = something;
+public class ModifyCommand extends Command {
+
+
+    private Patient patient;
+
+    /**
+     * Updates the user in the database
+     * @param patient user to be modified
+     */
+    public ModifyCommand(Patient patient) {
+        super(patient.getName());
+        this.patient = patient;
     }
 
     @Override
     public String doCommand(Database db) {
+        db.modifyPatient(patient);
         return null;
     }
 }
