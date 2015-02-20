@@ -98,7 +98,7 @@ public class Database {
 
     if( ps.execute() ){
 
-      return "Delete succesfull";
+      return "Delete successful";
     }
 
     } catch (SQLException e) {
@@ -106,7 +106,7 @@ public class Database {
       e.printStackTrace();
     }
 
-    return "Delete not succesfull";
+    return "Delete not successful";
 
 
 }
