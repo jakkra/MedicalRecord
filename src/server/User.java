@@ -28,6 +28,7 @@ abstract class User {
     }
 
     public String execute(Command command) {
+
         if (canExecuteCommand(command, db.get(command.getRequestedId()))) {
             try {
 

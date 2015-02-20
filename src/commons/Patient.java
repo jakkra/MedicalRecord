@@ -11,10 +11,10 @@ public class Patient {
     private final String nurse;
     private final String information;
 
-    public Patient(String name, String Department, String doctor, String nurse, String information) {
+    public Patient( String name, String Department, String doctor, String nurse, String information) {
 
         this.name = name;
-        department = Department;
+        this.department = Department;
         this.doctor = doctor;
         this.nurse = nurse;
         this.information = information;

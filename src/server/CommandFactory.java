@@ -28,8 +28,8 @@ public class CommandFactory {
             Patient p = Patient.ParsePatient(input[1]);
             return new AddCommand(p);
         } else if (command.equals("Read")) {
-            String patientName = input[1];
-            return new ReadCommand(patientName);
+            String patientId = input[1];
+            return new ReadCommand(patientId);
         } else if (command.equals("Modify")) {
 
             return new ModifyCommand(input[1]);

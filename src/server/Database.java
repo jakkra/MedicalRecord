@@ -118,26 +118,29 @@ public class Database {
     try {
 
       ps = conn
-        .prepareStatement("INSERT INTO patients VALUES ( ?, ?, ?);");
+        .prepareStatement("INSERT INTO patients OUTPUT patientId VALUES (?, ?, ?, ?);");
 
     ps.setString(1, name);
     ps.setString(2, department);
     ps.setString(3, nurse);
-    ps.setString(3, doctor);
+    ps.setString(4, doctor);
 
-    if( ps.execute()){
+    ResultSet rs = ps.executeUpdate();
 
-      return "Add complete";
+    if(rs.next()){
+
+      return rs.getString("patientId");
     }
-
 
     } catch (SQLException e) {
 
       e.printStackTrace();
-    }
-    return "Add not complete";
 
     }
+
+    return "Fel i servern";
+
+  }
     /**
      * @param id id of patient to get from database
      * @return Patient object containing fields from the database
@@ -167,7 +170,7 @@ public class Database {
       }
 
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
+
       e.printStackTrace();
     }
 
