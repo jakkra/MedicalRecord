@@ -10,8 +10,13 @@ public class Patient {
     private final String doctor;
     private final String nurse;
     private final String information;
+    private String patientId;
 
+<<<<<<< HEAD
     public Patient( String name, String department, String doctor, String nurse, String information) {
+=======
+    public Patient(String name, String Department, String doctor, String nurse, String information) {
+>>>>>>> FETCH_HEAD
 
         this.name = name;
         this.department = Department;
@@ -19,6 +24,7 @@ public class Patient {
         this.nurse = nurse;
         this.information = information;
     }
+
 
     public String getName() {
         return name;
@@ -57,5 +63,13 @@ public class Patient {
 
     public String toString() {
         return name + ";" + department + ";" + doctor + ";" + nurse + ";" + information;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 }

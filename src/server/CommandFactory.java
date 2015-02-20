@@ -11,9 +11,9 @@ public class CommandFactory {
      * Format of the String can be one of the following:
      * <p/>
      * Add: Add:Patient.toString()
-     * Remove: Remove:patientName
-     * Modify: Modify:Patient.toString()
-     * Read: Read:patientName
+     * Remove: Remove:patientID
+     * Modify: Modify:patientID;field to edit;new data for that field
+     * Read: Read:patientID
      *
      * @param clientMsg String which the command will be based on
      * @return Command which can be executed by a User
@@ -31,7 +31,6 @@ public class CommandFactory {
             String patientId = input[1];
             return new ReadCommand(patientId);
         } else if (command.equals("Modify")) {
-
             return new ModifyCommand(input[1]);
         }
         //TODO
