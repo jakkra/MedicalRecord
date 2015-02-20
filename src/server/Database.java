@@ -116,14 +116,16 @@ public class Database {
     try {
 
       ps = conn
-        .prepareStatement("INSERT INTO patients OUTPUT patientId VALUES (?, ?, ?, ?);");
+        .prepareStatement("INSERT INTO patients OUTPUT patientId VALUES (?, ?, ?, ?, ?);");
 
     ps.setString(1, patient.getName());
     ps.setString(2, patient.getDepartment());
     ps.setString(3, patient.getNurse());
     ps.setString(4, patient.getDoctor());
+    ps.setString(5, patient.getInformation());
 
-    ResultSet rs = ps.executeUpdate();
+
+    ResultSet rs = ps.executeQuery();
 
     if(rs.next()){
 
@@ -150,7 +152,7 @@ public class Database {
 
     try {
 
-      ps = conn.prepareStatement("Select * FROM patients WHERE patientId = ?;");
+      ps = conn.prepareStatement("SELECT name, department, nurse, doctor, information FROM patients WHERE patientId = ?;");
 
       ps.setString(1, patientId);
 
@@ -162,10 +164,13 @@ public class Database {
 
           new Patient(
 
-          rs.getString("patientId"),
+          rs.getString("name"),
           rs.getString("department"),
           rs.getString("nurse"),
-          rs.getString("doctor"));
+          rs.getString("doctor")
+          rs.getString("information")
+
+          );
 
       }
 
@@ -184,9 +189,10 @@ public class Database {
 
 
       PreparedStatement ps;
+
     try {
 
-      ps = conn.prepareStatement("Select * FROM patients;");
+      ps = conn.prepareStatement("Select name, department, nurse, doctor, information FROM patients;");
 
       ResultSet rs = ps.executeQuery();
 
@@ -194,11 +200,13 @@ public class Database {
 
        list.add(new Patient(
 
-       
-          rs.getString("patientId"),
+
+          rs.getString("name"),
           rs.getString("department"),
           rs.getString("nurse"),
           rs.getString("doctor")
+          rs.getString("information")
+
           ));
 
       }

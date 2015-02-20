@@ -13,9 +13,10 @@ public class ModifyCommand extends Command {
      */
     public ModifyCommand(String s) {
 
-       data = s.split(";");
+      super("0");
 
-        super(data[0]);
+      data = s.split(";");
+      setId(data[0]);
 
     }
 
