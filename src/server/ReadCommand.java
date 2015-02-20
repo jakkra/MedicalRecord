@@ -12,6 +12,6 @@ public class ReadCommand extends Command {
     }
     @Override
     public String doCommand(Database db) {
-        return db.get(reqId).toString();
+        return db.get(requesterId).toString();
     }
 }

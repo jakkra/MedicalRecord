@@ -4,23 +4,20 @@ package server;/*
 
 
 public abstract class Command {
+    protected String requesterId = "-1";
 
-    protected String reqId = "-1";
-
-    public Command(String reqId) {
-        this.reqId = reqId;
+    public Command(String requesterId) {
+        this.requesterId = requesterId;
     }
 
     public abstract String doCommand(Database db);
 
     public String getRequestedId(){
-
-        return reqId;
+        return requesterId;
     }
 
     public void setId(String reqId){
-      this.reqId = reqId;
-
+      this.requesterId = reqId;
     }
 
 

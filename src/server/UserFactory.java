@@ -11,7 +11,7 @@ public class UserFactory {
 
 
     /**
-     * CN Field should have the name of the person who connect
+     * CN Field should have the name of the person who connect (if patient it needs to be his/her ID)
      * O Field should contain the department of the person who connect
      * OU Field should contain the type of the person connecting (Doctor/Agency/Nurse/PatientUser)
      *
@@ -36,7 +36,6 @@ public class UserFactory {
             if (rdn.getType().equalsIgnoreCase("O")) {
                 department = rdn.getValue().toString();
             }
-
         }
 
         if (userType.equals("Doctor")) {

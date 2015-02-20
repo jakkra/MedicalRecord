@@ -22,8 +22,8 @@ public class CommandFactory {
         String[] input = clientMsg.split(":");
         String command = input[0];
         if (command.equals("Delete")) {
-            String patientName = input[1];
-            return new DeleteCommand(patientName);
+            String patientId = input[1];
+            return new DeleteCommand(patientId);
         } else if (command.equals("Add")) {
             Patient p = Patient.ParsePatient(input[1]);
             return new AddCommand(p);

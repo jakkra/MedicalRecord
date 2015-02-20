@@ -3,17 +3,13 @@ package server;/*
  */
 
 public class DeleteCommand extends Command {
-
-    private String patientId;
-
     public DeleteCommand(String patientId) {
         super(patientId);
     }
 
     @Override
     public String doCommand(Database db) {
-
-        return db.delete(reqId);
+        return db.delete(requesterId);
 
     }
 }

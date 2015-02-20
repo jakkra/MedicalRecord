@@ -11,19 +11,15 @@ import java.security.KeyStore;
 public class Server implements Runnable {
 
     private ServerSocket serverSocket = null;
+    private Database db;
 
     private boolean running;
 
     public Server() {
-
       running = true;
-
       Database.initiate();
 
-      Database db = null;
-
       try {
-
         this.db = Database.getInstance();
         this.db.openConnection();
 

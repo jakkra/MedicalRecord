@@ -28,10 +28,8 @@ abstract class User {
     }
 
     public String execute(Command command) {
-
         if (canExecuteCommand(command, db.get(command.getRequestedId()))) {
             try {
-
                 return command.doCommand(db);
 
             } catch (Exception e) {
@@ -48,7 +46,7 @@ abstract class User {
         if (type == AGENCY) {
             return true;
         }
-        if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) {
+        if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) { //TODO broken, need to be id instead
             return true;
         }
         if (command instanceof ReadCommand && type == NURSE) {

@@ -15,7 +15,7 @@ public class Patient {
     public Patient( String name, String department, String doctor, String nurse, String information) {
 
         this.name = name;
-        this.department = Department;
+        this.department = department;
         this.doctor = doctor;
         this.nurse = nurse;
         this.information = information;
