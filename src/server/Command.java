@@ -8,7 +8,6 @@ public abstract class Command {
     protected String reqId = "-1";
 
     public Command(String reqId) {
-
         this.reqId = reqId;
     }
 
@@ -20,7 +19,6 @@ public abstract class Command {
     }
 
     public void setId(String reqId){
-
       this.reqId = reqId;
 
     }

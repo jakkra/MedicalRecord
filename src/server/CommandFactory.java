@@ -11,9 +11,9 @@ public class CommandFactory {
      * Format of the String can be one of the following:
      * <p/>
      * Add: Add:Patient.toString()
-     * Remove: Remove:patientName
+     * Remove: Remove:patientID
      * Modify: Modify:Patient.toString()
-     * Read: Read:patientName
+     * Read: Read:patientID
      *
      * @param clientMsg String which the command will be based on
      * @return Command which can be executed by a User

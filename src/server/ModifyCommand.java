@@ -2,7 +2,6 @@ package server;/*
  * Created by jakkra on 2015-02-12.
  */
 
-import commons.Patient;
 
 public class ModifyCommand extends Command {
 
@@ -12,16 +11,12 @@ public class ModifyCommand extends Command {
      * @param patient user to be modified
      */
     public ModifyCommand(String s) {
-
-       data = s.split(";");
-
-        super(data[0]);
-
+        super(s.split(";")[0]);
+        this.data = s.split(";");
     }
 
     @Override
     public String doCommand(Database db) {
-
         return db.modify(reqId, data[1], data[2]);
     }
 

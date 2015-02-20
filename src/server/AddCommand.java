@@ -10,20 +10,15 @@ public class AddCommand extends Command {
 
 
     public AddCommand(Patient patient) {
-
         super("0");
-
         this.patient = patient;
         
     }
 
     @Override
     public String doCommand(Database db) {
-
         String id = db.add(patient);
-
         setId(id);
-
         return id;
     }
 }
