@@ -4,17 +4,14 @@ package server;/*
 
 public class ReadCommand extends Command {
 
-    private String id;
 
-    public ReadCommand(String id){
+    public ReadCommand(String patientId){
 
-        super(id);
-
-        this.id = id;
+        super(patientId);
 
     }
     @Override
     public String doCommand(Database db) {
-        return db.get(id).toString();
+        return db.get(reqId).toString();
     }
 }

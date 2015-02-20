@@ -22,7 +22,7 @@ public class ModifyCommand extends Command {
     @Override
     public String doCommand(Database db) {
 
-        return db.modify(data[0], data[1], data[2]);
+        return db.modify(reqId, data[1], data[2]);
     }
 
 }

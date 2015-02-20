@@ -14,6 +14,7 @@ public class AddCommand extends Command {
         super("0");
 
         this.patient = patient;
+        
     }
 
     @Override

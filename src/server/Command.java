@@ -14,7 +14,8 @@ public abstract class Command {
 
     public abstract String doCommand(Database db);
 
-    public String getRequestedId() {
+    public String getRequestedId()
+
         return reqId;
     }
 

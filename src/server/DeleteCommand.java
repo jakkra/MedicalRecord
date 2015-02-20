@@ -8,13 +8,12 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String patientId) {
         super(patientId);
-        this.patientId = patientId;
     }
 
     @Override
     public String doCommand(Database db) {
-            
-        return db.delete(patientId);
+
+        return db.delete(reqId);
 
     }
 }
