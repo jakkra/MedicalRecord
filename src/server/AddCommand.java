@@ -12,7 +12,7 @@ public class AddCommand extends Command {
     public AddCommand(Patient patient) {
         super("0");
         this.patient = patient;
-        
+
     }
 
     @Override

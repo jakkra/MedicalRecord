@@ -107,11 +107,9 @@ public class Database {
     }
 
     return "Delete not successful";
-
-
 }
 
-    public String add(String name,String department,String nurse, String doctor){
+    public String add(Patient patient){
 
       PreparedStatement ps;
 
@@ -120,10 +118,10 @@ public class Database {
       ps = conn
         .prepareStatement("INSERT INTO patients OUTPUT patientId VALUES (?, ?, ?, ?);");
 
-    ps.setString(1, name);
-    ps.setString(2, department);
-    ps.setString(3, nurse);
-    ps.setString(4, doctor);
+    ps.setString(1, patient.getName());
+    ps.setString(2, patient.getDepartment());
+    ps.setString(3, patient.getNurse());
+    ps.setString(4, patient.getDoctor());
 
     ResultSet rs = ps.executeUpdate();
 
@@ -152,7 +150,7 @@ public class Database {
 
     try {
 
-      ps = conn.prepareStatement("Select department, nurse, doctor FROM patients WHERE patientId = ?;");
+      ps = conn.prepareStatement("Select * FROM patients WHERE patientId = ?;");
 
       ps.setString(1, patientId);
 
@@ -162,7 +160,9 @@ public class Database {
 
       return
 
-          new Patient(patientId,
+          new Patient(
+
+          rs.getString("patientId"),
           rs.getString("department"),
           rs.getString("nurse"),
           rs.getString("doctor"));
@@ -193,6 +193,8 @@ public class Database {
       while(rs.next()){
 
        list.add(new Patient(
+
+       
           rs.getString("patientId"),
           rs.getString("department"),
           rs.getString("nurse"),
