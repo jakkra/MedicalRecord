@@ -12,7 +12,7 @@ public class CommandFactory {
      * <p/>
      * Add: Add:Patient.toString()
      * Remove: Remove:patientID
-     * Modify: Modify:Patient.toString()
+     * Modify: Modify:patientID;field to edit;new data for that field
      * Read: Read:patientID
      *
      * @param clientMsg String which the command will be based on
@@ -31,7 +31,6 @@ public class CommandFactory {
             String patientId = input[1];
             return new ReadCommand(patientId);
         } else if (command.equals("Modify")) {
-
             return new ModifyCommand(input[1]);
         }
         //TODO
