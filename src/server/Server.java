@@ -13,9 +13,24 @@ public class Server implements Runnable {
     private boolean running;
 
     public Server() {
-        running = true;
-        Database.initiate();
-    }
+
+      running = true;
+      Database.initiate();
+
+      Database db = null;
+
+      try {
+
+        this.db = Database.getInstance();
+
+  } catch (Exception e) {
+
+    e.printStackTrace();
+  }
+
+      this.db.openConnection();
+  }
+
 
     public void run() {
         System.out.println("\nserver.Server Started\n");
