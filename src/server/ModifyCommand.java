@@ -11,17 +11,9 @@ public class ModifyCommand extends Command {
      * @param patient user to be modified
      */
     public ModifyCommand(String s) {
-<<<<<<< HEAD
 
-      super("0");
-
-      data = s.split(";");
-      setId(data[0]);
-
-=======
         super(s.split(";")[0]);
         this.data = s.split(";");
->>>>>>> FETCH_HEAD
     }
 
     @Override
