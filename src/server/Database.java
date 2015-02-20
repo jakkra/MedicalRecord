@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Database {
 
-    private static Database db;
+  private static Database db;
 
   private Connection conn;
 
@@ -109,9 +109,7 @@ public class Database {
     return "Delete not succesfull";
 
 
-    public boolean delete(String patientName) {
-        return true;
-    }
+}
 
     public String add(String name,String department,String nurse, String doctor){
 
@@ -137,7 +135,9 @@ public class Database {
 
       e.printStackTrace();
     }
-    return "Add not complete";    }
+    return "Add not complete";
+
+    }
     /**
      * @param id id of patient to get from database
      * @return Patient object containing fields from the database
@@ -146,6 +146,7 @@ public class Database {
 
 
       PreparedStatement ps;
+
     try {
 
       ps = conn.prepareStatement("Select department, nurse, doctor FROM patients WHERE patientId = ?;");
@@ -157,6 +158,7 @@ public class Database {
       if(rs.next()){
 
       return
+
           new Patient(patientId,
           rs.getString("department"),
           rs.getString("nurse"),
@@ -203,24 +205,23 @@ public class Database {
 
 
       return list.toString();
+}
 
-    public Patient get(String patientName) {
-        return null;
-    }
 
-    public String movify(String info1,String info2,String info3){
+    public String modify(String info1,String info2,String info3){
 
 
       PreparedStatement ps;
+
     try {
       ps = conn
+
           .prepareStatement("UPDATE patients SET ? = ? WHERE patientId = ?");
 
 
-    ps.setString(1, info1);
-    ps.setString(2, info2);
-    ps.setString(3, info3);
-
+    ps.setString(1, info2);
+    ps.setString(2, info3);
+    ps.setString(3, info1);
 
 
     if( ps.execute() ){
@@ -233,10 +234,8 @@ public class Database {
       e.printStackTrace();
     }
 
-    return "Patient journal not changed";
-    }
-    public boolean modifyPatient(Patient patient) {
-        return true;
+      return "Patient journal not changed";
+
 
     }
 

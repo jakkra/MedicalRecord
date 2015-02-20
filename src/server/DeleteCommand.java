@@ -13,7 +13,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public String doCommand(Database db) {
-        db.delete(patientId);
-        return null;
+            
+        return db.delete(patientId);
+
     }
 }

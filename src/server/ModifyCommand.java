@@ -6,21 +6,23 @@ import commons.Patient;
 
 public class ModifyCommand extends Command {
 
-
-    private Patient patient;
-
+    String[] data;
     /**
      * Updates the user in the database
      * @param patient user to be modified
      */
-    public ModifyCommand(Patient patient) {
-        super(patient.getName());
-        this.patient = patient;
+    public ModifyCommand(String s) {
+
+       data = s.split(";");
+
+        super(data[0]);
+
     }
 
     @Override
     public String doCommand(Database db) {
-        db.modifyPatient(patient);
-        return null;
+      
+        return db.modify(data[0], data[1], data[2]);
     }
+
 }

@@ -3,6 +3,7 @@ package server;
 import commons.Patient;
 
 abstract class User {
+
     public static int AGENCY = 1337;
     public static int DOCTOR = 3;
     public static int NURSE = 2;
@@ -29,7 +30,9 @@ abstract class User {
     public String execute(Command command) {
         if (canExecuteCommand(command, db.get(command.getRequestedId()))) {
             try {
+
                 return command.doCommand(db);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

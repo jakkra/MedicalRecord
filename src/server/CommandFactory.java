@@ -31,8 +31,8 @@ public class CommandFactory {
             String patientName = input[1];
             return new ReadCommand(patientName);
         } else if (command.equals("Modify")) {
-            Patient p = Patient.ParsePatient(input[1]);
-            return new ModifyCommand(p);
+
+            return new ModifyCommand(input[1]);
         }
         //TODO
         return null;

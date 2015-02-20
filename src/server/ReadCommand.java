@@ -7,8 +7,11 @@ public class ReadCommand extends Command {
     private String id;
 
     public ReadCommand(String id){
+
         super(id);
+
         this.id = id;
+
     }
     @Override
     public String doCommand(Database db) {

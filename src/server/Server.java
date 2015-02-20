@@ -9,12 +9,15 @@ import java.net.ServerSocket;
 import java.security.KeyStore;
 
 public class Server implements Runnable {
+
     private ServerSocket serverSocket = null;
+
     private boolean running;
 
     public Server() {
 
       running = true;
+
       Database.initiate();
 
       Database db = null;
@@ -22,13 +25,13 @@ public class Server implements Runnable {
       try {
 
         this.db = Database.getInstance();
+        this.db.openConnection();
 
   } catch (Exception e) {
 
     e.printStackTrace();
   }
 
-      this.db.openConnection();
   }
 
 

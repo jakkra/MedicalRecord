@@ -6,12 +6,18 @@ import commons.Patient;
 
 public class AddCommand extends Command {
 
+  private Patient patient;
+
+
     public AddCommand(Patient patient) {
         super(patient.getName());
+
+        this.patient = patient;
     }
 
     @Override
     public String doCommand(Database db) {
-        return null;
+      
+        return db.add(patient);
     }
 }
