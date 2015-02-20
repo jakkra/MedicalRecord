@@ -17,23 +17,23 @@ public class client {
 
     public static void main(String[] args) throws Exception {
         String host = null;
-//        String passwordInfo = null;
-        String passwordInfo = "password";
+        String passwordInfo = null;
+//        String passwordInfo = "password";
         int port = 4446;
         for (int i = 0; i < args.length; i++) {
             System.out.println("args[" + i + "] = " + args[i]);
         }
-//        if (args.length < 2) {
-//            System.out.println("USAGE: java client.client host port");
-//        System.exit(-1);
-//        }
-//        try { /* get input parameters */
-//            host = args[0];
-//            passwordInfo = args[1];
-//        } catch (IllegalArgumentException e) {
-//            System.out.println("USAGE: java client.client host port");
-//            System.exit(-1);
-//        }
+        if (args.length < 2) {
+            System.out.println("USAGE: java client.client host port");
+        System.exit(-1);
+        }
+        try { /* get input parameters */
+            host = args[0];
+            passwordInfo = args[1];
+        } catch (IllegalArgumentException e) {
+            System.out.println("USAGE: java client.client host port");
+            System.exit(-1);
+        }
         host = "localhost";
 
         try { /* set up a key manager for client.client authentication */
@@ -45,7 +45,7 @@ public class client {
                 KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
                 TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
                 SSLContext ctx = SSLContext.getInstance("TLS");
-                ks.load(new FileInputStream("clientkeystore"), password);  // keystore password (storepass)
+                ks.load(new FileInputStream(host + "-keystore"), password);  // keystore password (storepass)
                 ts.load(new FileInputStream("clienttruststore"), password); // truststore password (storepass);
                 kmf.init(ks, password); // user password (keypass)
                 tmf.init(ts); // keystore can be used as truststore here
