@@ -44,8 +44,8 @@ public class client {
                 KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
                 TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
                 SSLContext ctx = SSLContext.getInstance("TLS");
-                ks.load(new FileInputStream(host + "-keystore"), password);  // keystore password (storepass)
-                ts.load(new FileInputStream("hospitaltruststore"), "eit060".toCharArray()); // truststore password (storepass);
+                ks.load(new FileInputStream("clientkeystore"), password);  // keystore password (storepass)
+                ts.load(new FileInputStream("clienttruststore"), password); // truststore password (storepass);
                 kmf.init(ks, password); // user password (keypass)
                 tmf.init(ts); // keystore can be used as truststore here
                 ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
@@ -56,6 +56,15 @@ public class client {
             }
 
             SSLSocket socket = (SSLSocket) factory.createSocket(host, port);
+            String[] enabled = socket.getEnabledCipherSuites();
+            for (int i = 0; i <enabled.length; i++) {
+                System.out.println("Enabled " + enabled[i]);
+            }
+            String[] supported = socket.getSupportedCipherSuites();
+            for (int i = 0; i <supported.length; i++) {
+                System.out.println("Supported " + supported[i]);
+
+            }
             System.out.println("\nsocket before handshake:\n" + socket + "\n");
 
             /*

@@ -49,8 +49,6 @@ public class ServerConnection implements Runnable {
                 out.println(response);
                 out.flush();
             }
-
-
         } catch (IOException e) {
             try {
                 in.close();
