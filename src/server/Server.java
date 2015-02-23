@@ -51,11 +51,11 @@ public class Server implements Runnable {
                 SSLSocket socket = (SSLSocket) serverSocket.accept();
                 System.out.println("Supported " + socket.getSupportedCipherSuites()[0]);
                 String[] enabled = socket.getEnabledCipherSuites();
-                for (int i = 0; i <enabled.length; i++) {
+                for (int i = 0; i < enabled.length; i++) {
                     System.out.println("Enabled" + enabled[i]);
                 }
                 String[] supported = socket.getSupportedCipherSuites();
-                for (int i = 0; i <supported.length; i++) {
+                for (int i = 0; i < supported.length; i++) {
                     System.out.println("Supported " + supported[i]);
 
                 }
@@ -94,8 +94,8 @@ public class Server implements Runnable {
                 System.out.println("Enter server Truststore password");
                 //String truststorePassword = new String(System.console().readPassword());
                 String truststorePassword = "password";
-                ks.load(new FileInputStream("serverkeystore"), keystorePassword.toCharArray());
-                ts.load(new FileInputStream("servertruststore"), truststorePassword.toCharArray());
+                ks.load(new FileInputStream("Server_certificates/keystore"), keystorePassword.toCharArray());
+                ts.load(new FileInputStream("Server_certificates/truststore"), truststorePassword.toCharArray());
                 kmf.init(ks, keystorePassword.toCharArray());
                 tmf.init(ts);
                 ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);

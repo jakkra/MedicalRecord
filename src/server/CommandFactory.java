@@ -33,6 +33,7 @@ public class CommandFactory {
         } else if (command.equals("Modify")) {
             return new ModifyCommand(input[1]);
         }
+        System.err.println("Command null WTF should not be called!??!??1!");
         //TODO
         return null;
     }

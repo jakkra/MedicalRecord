@@ -22,12 +22,17 @@ abstract class User {
         this.type = type;
         try {
             db = Database.getInstance();
+            System.out.println(db);
         } catch (Exception e) {
+            System.out.println("error no db");
             e.printStackTrace();
         }
     }
 
     public String execute(Command command) {
+        System.out.println("Class is: " + this.getClass());
+        if(command == null) System.out.println("command null");
+        db.get(command.getRequestedId());
         if (canExecuteCommand(command, db.get(command.getRequestedId()))) {
             try {
                 return command.doCommand(db);
