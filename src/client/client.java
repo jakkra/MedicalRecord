@@ -34,7 +34,6 @@ public class client {
             System.out.println("USAGE: java client.client host port");
             System.exit(-1);
         }
-        host = "localhost";
 
         try { /* set up a key manager for client.client authentication */
             SSLSocketFactory factory = null;
