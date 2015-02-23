@@ -52,7 +52,7 @@ public class Patient {
      * @return
      */
     public static Patient ParsePatient(String s) {
-      
+
         String[] data = s.split(";");
         return new Patient(data[0], data[1], data[2], data[3], data[4]);
 

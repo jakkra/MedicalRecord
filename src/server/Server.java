@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.security.KeyStore;
+import Database.java;
 
 public class Server implements Runnable {
 
@@ -16,7 +17,9 @@ public class Server implements Runnable {
     private boolean running;
 
     public Server() {
+
       running = true;
+
       Database.initiate();
 
       try {
@@ -53,7 +56,6 @@ public class Server implements Runnable {
                 String subject = cert.getSubjectDN().getName();
                 System.out.println("client.client connected");
                 System.out.println("client.client getName: (cert subject DN field): " + subject);
-
 
                 ServerConnection serverConnection = new ServerConnection(socket, cert);
                 new Thread(serverConnection).start();
