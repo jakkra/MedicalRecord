@@ -43,7 +43,6 @@ public class ServerConnection implements Runnable {
         try {
             while ((clientMsg = in.readLine()) != null) {
                 System.out.println("received '" + clientMsg + "' from client.client");
-
                 Command command = CommandFactory.buildCommand(clientMsg);
                 String response = user.execute(command);
                 out.println(response);

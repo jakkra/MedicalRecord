@@ -25,7 +25,7 @@ public class client {
         }
         if (args.length < 2) {
             System.out.println("USAGE: java client.client host port");
-        System.exit(-1);
+            System.exit(-1);
         }
         try { /* get input parameters */
             host = args[0];
@@ -57,11 +57,11 @@ public class client {
 
             SSLSocket socket = (SSLSocket) factory.createSocket(host, port);
             String[] enabled = socket.getEnabledCipherSuites();
-            for (int i = 0; i <enabled.length; i++) {
+            for (int i = 0; i < enabled.length; i++) {
                 System.out.println("Enabled " + enabled[i]);
             }
             String[] supported = socket.getSupportedCipherSuites();
-            for (int i = 0; i <supported.length; i++) {
+            for (int i = 0; i < supported.length; i++) {
                 System.out.println("Supported " + supported[i]);
 
             }
@@ -76,6 +76,7 @@ public class client {
             socket.startHandshake();
 
             SSLSession session = socket.getSession();
+            System.out.println("Cipher suite used: " + session.getCipherSuite());
             X509Certificate cert = (X509Certificate) session.getPeerCertificateChain()[0];
             String subject = cert.getSubjectDN().getName();
             System.out.println("certificate name (subject DN field) on certificate received from server:\n" + subject + "\n");
