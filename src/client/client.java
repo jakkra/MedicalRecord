@@ -50,9 +50,11 @@ public class client {
                 tmf.init(ts); // keystore can be used as truststore here
                 ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
                 factory = ctx.getSocketFactory();
+
             } catch (Exception e) {
                 throw new IOException(e);
             }
+
             SSLSocket socket = (SSLSocket) factory.createSocket(host, port);
             System.out.println("\nsocket before handshake:\n" + socket + "\n");
 
@@ -87,7 +89,7 @@ public class client {
                 System.out.println("done");
 
                 System.out.println("received '" + in.readLine() + "' from server\n");
-                
+
             }
             in.close();
             out.close();

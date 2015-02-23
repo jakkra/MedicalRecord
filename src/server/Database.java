@@ -218,7 +218,7 @@ public class Database {
 
         try {
             ps = conn.prepareStatement("UPDATE patients SET ? = ? WHERE patientId = ?");
-            
+
             ps.setString(1, info2);
             ps.setString(2, info3);
             ps.setString(3, info1);
