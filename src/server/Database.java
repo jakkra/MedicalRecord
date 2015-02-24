@@ -221,7 +221,7 @@ public class Database {
     }
 
 
-    public String modify(String info1, String info2, String info3) {
+    public String modify(String patientId, String category, String newValue) {
         System.out.println(info1 + " "+ info2 + " " + info3);
 
 
@@ -229,16 +229,55 @@ public class Database {
         PreparedStatement ps;
 
         try {
-            ps = conn.prepareStatement("UPDATE patients SET ? = ? WHERE patientId = ?;");
-
-            ps.setString(1, info2);
-            ps.setString(2, info3);
-            ps.setString(3, info1);
 
 
-            if (ps.executeUpdate() == 1) {
-                return "Patient journal changed";
-            }
+          if(category.equals("name")){
+
+            ps = conn.prepareStatement("UPDATE patients SET name = ? WHERE patientId = ?;");
+
+            ps.setString(1, newValue);
+            ps.setString(2, patientId);
+
+
+          }else if(category.equals("department")){
+
+            ps = conn.prepareStatement("UPDATE patients SET department = ? WHERE patientId = ?;");
+
+            ps.setString(1, newValue);
+            ps.setString(2, patientId);
+
+
+          }else if(category.equals("nurse")){
+
+            ps = conn.prepareStatement("UPDATE patients SET nurse = ? WHERE patientId = ?;");
+
+            ps.setString(1, newValue);
+            ps.setString(2, patientId);
+
+
+          }else if(category.equals("doctor")){
+
+            ps = conn.prepareStatement("UPDATE patients SET doctor = ? WHERE patientId = ?;");
+
+            ps.setString(1, newValue);
+            ps.setString(2, patientId);
+
+
+
+          }else if(category.equals("information")){
+
+            ps = conn.prepareStatement("UPDATE patients SET information = ? WHERE patientId = ?;");
+
+            ps.setString(1, newValue);
+            ps.setString(2, patientId);
+
+
+          }
+
+
+          if (ps.executeUpdate() == 1) {
+              return "Patient journal changed";
+          }
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
