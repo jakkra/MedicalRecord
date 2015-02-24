@@ -107,6 +107,9 @@ public class Database {
 
         try {
 
+          conn.setAutoCommit(false);
+
+
             ps = conn
                     .prepareStatement("INSERT INTO patients (name, department, nurse, doctor, information)  VALUES (?, ?, ?, ?, ?);");
 
@@ -123,6 +126,8 @@ public class Database {
 
             ResultSet rs = ps.executeQuery();
 
+            conn.setAutoCommit(true);
+
             if (rs.next()) {
 
                 return String.valueOf(rs.getInt("patientId"));
@@ -132,7 +137,12 @@ public class Database {
 
             e.printStackTrace();
 
+            conn.rollback();
+            conn.setAutoCommit(true);
+
+
         }
+
 
         return "Fel i servern";
 
