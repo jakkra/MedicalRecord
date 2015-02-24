@@ -16,6 +16,7 @@ public class ServerConnection implements Runnable {
     private User user;
     private PrintWriter out;
     private BufferedReader in;
+    private String TAG = getClass().getSimpleName();
 
 
     public ServerConnection(SSLSocket socket, X509Certificate certificate) {
@@ -31,6 +32,7 @@ public class ServerConnection implements Runnable {
         }
         try {
             user = UserFactory.buildUser(certificate);
+            Logger.log(TAG, "Connected user is of type: " + user.getClass().getSimpleName());
         } catch (InvalidNameException e) {
             System.err.println("Error building User");
             e.printStackTrace();
@@ -43,8 +45,22 @@ public class ServerConnection implements Runnable {
         try {
             while ((clientMsg = in.readLine()) != null) {
                 System.out.println("received '" + clientMsg + "' from client.client");
+                Logger.log(TAG, "received '" + clientMsg + "' from client.client");
+
                 Command command = CommandFactory.buildCommand(clientMsg);
-                String response = user.execute(command);
+                String response;
+
+                if (command == null) {
+                    response = "Format of the String can be one of the following:" +
+                            "Add: Add:Patient.toString()" +
+                            "Remove: Remove:patientID" +
+                            "Modify: Modify:patientID;field to edit (field can be: name, department, nurse, doctor, information);new data for that field" +
+                            "Read: Read:patientID";
+                } else {
+                    response = user.execute(command);
+                    System.out.println(response);
+
+                }
                 out.println(response);
                 out.flush();
             }

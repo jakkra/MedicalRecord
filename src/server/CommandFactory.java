@@ -6,6 +6,8 @@ package server;
 import commons.Patient;
 
 public class CommandFactory {
+
+
     /**
      * Converts an String to a command, to be executed by a User.
      * Format of the String can be one of the following:
@@ -21,21 +23,26 @@ public class CommandFactory {
     public static Command buildCommand(String clientMsg) {
         String[] input = clientMsg.split(":");
         String command = input[0];
+        Command c = null;
         if (command.equals("Delete")) {
             String patientId = input[1];
-            return new DeleteCommand(patientId);
+            c = new DeleteCommand(patientId);
         } else if (command.equals("Add")) {
             Patient p = Patient.ParsePatient(input[1]);
-            return new AddCommand(p);
+            c = new AddCommand(p);
         } else if (command.equals("Read")) {
             String patientId = input[1];
-            return new ReadCommand(patientId);
+            c = new ReadCommand(patientId);
         } else if (command.equals("Modify")) {
-            return new ModifyCommand(input[1]);
+            c = new ModifyCommand(input[1]);
         }
-        System.err.println("Command null WTF should not be called!??!??1!");
-        //TODO
-        return null;
+        if (c != null) {
+            Logger.log("CommandFactory", "Received command is " + c.getClass().getSimpleName() + " from message: " + clientMsg);
+        } else {
+            System.err.println("Command null WTF should not be called!??!??1!");
+            Logger.log("CommandFactory", "Unknown Command not supported: " + clientMsg);
+        }
+        return c;
     }
 
 }

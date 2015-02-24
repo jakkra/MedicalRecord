@@ -19,7 +19,7 @@ public class Logger {
 
     }
 
-    public void log(String tag, String message) {
+    public static void log(String tag, String message) {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
             out.println(tag + " : " + message);

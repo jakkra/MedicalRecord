@@ -12,6 +12,7 @@ public class Server implements Runnable {
 
     private ServerSocket serverSocket = null;
     private Database db;
+    private String TAG = getClass().getSimpleName();
 
     private boolean running;
 
@@ -31,9 +32,6 @@ public class Server implements Runnable {
 
 
     public void run() {
-        System.out.println("\nserver.Server Started\n");
-        System.out.println("Enter port");
-        //int port = Integer.parseInt(System.console().readLine());
         int port = 4446;
         String type = "TLS";
         try {
@@ -49,22 +47,22 @@ public class Server implements Runnable {
         while (running) {
             try {
                 SSLSocket socket = (SSLSocket) serverSocket.accept();
-                System.out.println("Supported " + socket.getSupportedCipherSuites()[0]);
-                String[] enabled = socket.getEnabledCipherSuites();
-                for (int i = 0; i < enabled.length; i++) {
-                    System.out.println("Enabled" + enabled[i]);
-                }
-                String[] supported = socket.getSupportedCipherSuites();
-                for (int i = 0; i < supported.length; i++) {
-                    System.out.println("Supported " + supported[i]);
-
-                }
+//                System.out.println("Supported " + socket.getSupportedCipherSuites()[0]);
+//                String[] enabled = socket.getEnabledCipherSuites();
+//                for (int i = 0; i < enabled.length; i++) {
+//                    System.out.println("Enabled" + enabled[i]);
+//                }
+//                String[] supported = socket.getSupportedCipherSuites();
+//                for (int i = 0; i < supported.length; i++) {
+//                    System.out.println("Supported " + supported[i]);
+//
+//                }
 
                 SSLSession session = socket.getSession();
                 X509Certificate cert = (X509Certificate) session.getPeerCertificateChain()[0];
                 String subject = cert.getSubjectDN().getName();
-                System.out.println("client.client connected");
-                System.out.println("client.client getName: (cert subject DN field): " + subject);
+                Logger.log(TAG, "client.client connected");
+                Logger.log(TAG, "client.client getName: (cert subject DN field): " + subject);
 
                 ServerConnection serverConnection = new ServerConnection(socket, cert);
                 new Thread(serverConnection).start();

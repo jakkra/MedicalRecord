@@ -30,8 +30,6 @@ abstract class User {
     }
 
     public String execute(Command command) {
-        System.out.println("Class is: " + this.getClass());
-        if(command == null) System.out.println("command null");
         db.get(command.getRequestedId());
         if (canExecuteCommand(command, db.get(command.getRequestedId()))) {
             try {
@@ -41,47 +39,54 @@ abstract class User {
                 e.printStackTrace();
             }
         } else {
+            System.out.println("DENIED!!!");
             return "ACCESS DENIED";
         }
-        return "";
+        return "Something went wrong";
     }
 
     //TODO type can be replaced by this instanceOf DOCTOR and so on...
     private boolean canExecuteCommand(Command command, Patient requestedPatient) {
+        boolean approved = false;
         if (type == AGENCY) {
-            return true;
+            approved = true;
         }
         if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) { //TODO broken, need to be id instead
-            return true;
+            approved = true;
         }
         if (command instanceof ReadCommand && type == NURSE) {
             if (requestedPatient.getDepartment().equals(department)) {
-                return true;
+                approved = true;
             } else if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) {
-                return true;
+                approved = true;
             }
 
         } else if (command instanceof ModifyCommand && type == NURSE) {
             if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) {
-                return true;
+                approved = true;
             }
         } else if (command instanceof ReadCommand && type == DOCTOR) {
             if (requestedPatient.getDepartment().equals(department)) {
-                return true;
+                approved = true;
             } else if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) {
-                return true;
+                approved = true;
             }
 
         } else if (command instanceof ModifyCommand && type == DOCTOR) {
             if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) {
-                return true;
+                approved = true;
             }
         } else if (command instanceof AddCommand && type == DOCTOR) {
-            if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) {
-                return true;
-            }
+            approved = true;
+
         }
-        return false;
+        if (approved) {
+            Logger.log(getClass().getSimpleName(), "Access Granted");
+            return true;
+        } else {
+            Logger.log(getClass().getSimpleName(), "Access Denied");
+            return false;
+        }
     }
 
 

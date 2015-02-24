@@ -12,8 +12,7 @@ public class Patient {
     private final String information;
     private String patientId;
 
-    public Patient( String name, String department, String doctor, String nurse, String information) {
-
+    public Patient( String name, String department, String nurse, String doctor, String information) {
         this.name = name;
         this.department = department;
         this.doctor = doctor;
@@ -59,7 +58,7 @@ public class Patient {
     }
 
     public String toString() {
-        return name + ";" + department + ";" + doctor + ";" + nurse + ";" + information;
+        return name + ";" + department + ";" + nurse + ";" + doctor + ";" + information;
     }
 
     public String getPatientId() {

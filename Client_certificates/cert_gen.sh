@@ -5,9 +5,9 @@ KEYSTORE_FILE="keystore"
 TRUSTSTORE_FILE="truststore"
 KEYSTORE_PASS="password"
 
-NAME="Alle"
-USER_TYPE="Patient"
-DEPARTMENT="Dep A"
+NAME="Kalle"
+USER_TYPE="Doctor"
+DEPARTMENT="depA"
 PASSWD="password"
 TRUST_PASSWD="password"
 

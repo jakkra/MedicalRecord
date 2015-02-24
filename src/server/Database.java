@@ -36,8 +36,6 @@ public class Database {
      * Open a connection to the database, using the specified user name and
      * password.
      *
-     * @param userName The user name.
-     * @param password The user's password.
      * @return true if the connection succeeded, false if the supplied user name
      * and password were not recognized. Returns false also if the JDBC
      * driver isn't found.
@@ -104,13 +102,13 @@ public class Database {
     }
 
     public String add(Patient patient) {
-
+        System.out.println(patient.toString());
         PreparedStatement ps;
 
         try {
 
             ps = conn
-                    .prepareStatement("INSERT INTO patients OUTPUT patientId VALUES (?, ?, ?, ?, ?);");
+                    .prepareStatement("INSERT INTO patients (name, department, nurse, doctor, information)  VALUES (?, ?, ?, ?, ?);");
 
             ps.setString(1, patient.getName());
             ps.setString(2, patient.getDepartment());
@@ -121,13 +119,13 @@ public class Database {
             ps.execute();
 
             ps = conn
-                    .prepareStatement("SELECT LAST_INSERT_ID();");
+                    .prepareStatement("SELECT LAST_INSERT_ID() as patientId;");
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
-                return rs.getString("LAST_INSERT_ID()");
+                return String.valueOf(rs.getInt("patientId"));
             }
 
         } catch (SQLException e) {
@@ -141,7 +139,7 @@ public class Database {
     }
 
     /**
-     * @param id id of patient to get from database
+     * @param patientId id of patient to get from database
      * @return Patient object containing fields from the database
      */
     public Patient get(String patientId) {
