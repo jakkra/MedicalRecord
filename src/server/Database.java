@@ -146,8 +146,6 @@ public class Database {
      * @return Patient object containing fields from the database
      */
     public Patient get(String patientId) {
-
-
         PreparedStatement ps;
 
         try {
