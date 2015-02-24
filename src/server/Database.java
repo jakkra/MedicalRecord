@@ -130,17 +130,13 @@ public class Database {
             }
 
         } catch (SQLException e) {
-
             e.printStackTrace();
-
             try {
                 conn.rollback();
                 conn.setAutoCommit(true);
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-
-
         }
 
 
