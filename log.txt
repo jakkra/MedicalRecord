@@ -1,0 +1,31 @@
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Add:Bob;dep;nur;doc;infoskjjsfd' from client.client
+CommandFactory : Received command is AddCommand from message: Add:Bob;dep;nur;doc;infoskjjsfd
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Bob, OU=Patient, O=Dep A, L=Anytown, ST=City, C=SE
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Bob, OU=Patient, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: PatientUser
+ServerConnection : received 'Read:6' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:6
+PatientUser : Access Granted
+ServerConnection : received 'Read:3' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:3
+PatientUser : Access Denied
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Read:6' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:6
+Doctor : Access Denied
+ServerConnection : received 'Read:5' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:5
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Hehfd' from client.client
+CommandFactory : Unknown Command not supported: Hehfd

@@ -52,10 +52,10 @@ public class ServerConnection implements Runnable {
 
                 if (command == null) {
                     response = "Format of the String can be one of the following:" +
-                            "Add: Add:Patient.toString()" +
-                            "Remove: Remove:patientID" +
-                            "Modify: Modify:patientID;field to edit (field can be: name, department, nurse, doctor, information);new data for that field" +
-                            "Read: Read:patientID";
+                            "Add: {Add:Patient.toString()}" +
+                            "Remove: {Remove:patientID}" +
+                            "Modify: {Modify:patientID;field to edit} (field can be: name, department, nurse, doctor, information);new data for that field" +
+                            "Read: {Read:patientID}";
                 } else {
                     response = user.execute(command);
                     System.out.println(response);

@@ -5,11 +5,7 @@ package server;
 
 import commons.Patient;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 
@@ -107,7 +103,7 @@ public class Database {
 
         try {
 
-          conn.setAutoCommit(false);
+            conn.setAutoCommit(false);
 
 
             ps = conn
@@ -137,8 +133,12 @@ public class Database {
 
             e.printStackTrace();
 
-            conn.rollback();
-            conn.setAutoCommit(true);
+            try {
+                conn.rollback();
+                conn.setAutoCommit(true);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
 
 
         }

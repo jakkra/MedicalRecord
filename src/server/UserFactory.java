@@ -44,7 +44,7 @@ public class UserFactory {
             return new Agency(userName, department);
         } else if (userType.equals("Nurse")) {
             return new Nurse(userName, department);
-        } else if (userType.equals("PatientUser")) {
+        } else if (userType.equals("Patient")) {
             return new PatientUser(userName, department);
         }
         System.err.println("Should never be called");
