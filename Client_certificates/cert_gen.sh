@@ -6,9 +6,9 @@ TRUSTSTORE_FILE="truststore"
 KEYSTORE_PASS="password"
 
 #Edit those fields before running the script
-NAME="Kalle"
-USER_TYPE="Doctor"
-DEPARTMENT="depA"
+NAME="FBI"
+USER_TYPE="Agency"
+DEPARTMENT=""
 PASSWD="password"
 TRUST_PASSWD="password"
 

@@ -102,3 +102,45 @@ ServerConnection : Connected user is of type: Doctor
 ServerConnection : received 'Modify:7;name;newName' from client.client
 CommandFactory : Received command is ModifyCommand from message: Modify:7;name;newName
 Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;newName' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;newName
+Doctor : Access Granted
+ServerConnection : received 'Read:7' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:7
+Doctor : Access Granted
+ServerConnection : received 'Delete:7' from client.client
+CommandFactory : Received command is DeleteCommand from message: Delete:7
+Doctor : Access Denied
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Delete:7' from client.client
+CommandFactory : Received command is DeleteCommand from message: Delete:7
+Doctor : Access Granted
+ServerConnection : received 'Read:7' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:7
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=FBI, OU=Agency, O=, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Agency
+ServerConnection : received 'Read:1' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:1
+Agency : Access Granted
+ServerConnection : received 'Delete:1' from client.client
+CommandFactory : Received command is DeleteCommand from message: Delete:1
+Agency : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=FBI, OU=Agency, O=, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Agency
+ServerConnection : received 'Delete:2' from client.client
+CommandFactory : Received command is DeleteCommand from message: Delete:2
+Agency : Access Granted
+ServerConnection : received 'Add:23;23;23;23' from client.client
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=FBI, OU=Agency, O=, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Agency
+ServerConnection : received 'Add:23;23;23;23;23' from client.client
+CommandFactory : Received command is AddCommand from message: Add:23;23;23;23;23
+Agency : Access Denied

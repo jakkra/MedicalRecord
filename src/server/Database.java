@@ -84,8 +84,7 @@ public class Database {
 
             ps.setString(1, patientId);
 
-            if (ps.execute()) {
-
+            if (ps.executeUpdate() == 1) {
                 return "Delete successful";
             }
 
@@ -138,8 +137,6 @@ public class Database {
                 e1.printStackTrace();
             }
         }
-
-
         return "Fel i servern";
 
     }
@@ -222,62 +219,57 @@ public class Database {
 
 
     public String modify(String patientId, String category, String newValue) {
-        System.out.println(info1 + " "+ info2 + " " + info3);
-
-
-
-        PreparedStatement ps;
+        PreparedStatement ps = null;
 
         try {
 
 
-          if(category.equals("name")){
+            if (category.equals("name")) {
 
-            ps = conn.prepareStatement("UPDATE patients SET name = ? WHERE patientId = ?;");
+                ps = conn.prepareStatement("UPDATE patients SET name = ? WHERE patientId = ?;");
 
-            ps.setString(1, newValue);
-            ps.setString(2, patientId);
-
-
-          }else if(category.equals("department")){
-
-            ps = conn.prepareStatement("UPDATE patients SET department = ? WHERE patientId = ?;");
-
-            ps.setString(1, newValue);
-            ps.setString(2, patientId);
+                ps.setString(1, newValue);
+                ps.setString(2, patientId);
 
 
-          }else if(category.equals("nurse")){
+            } else if (category.equals("department")) {
 
-            ps = conn.prepareStatement("UPDATE patients SET nurse = ? WHERE patientId = ?;");
+                ps = conn.prepareStatement("UPDATE patients SET department = ? WHERE patientId = ?;");
 
-            ps.setString(1, newValue);
-            ps.setString(2, patientId);
-
-
-          }else if(category.equals("doctor")){
-
-            ps = conn.prepareStatement("UPDATE patients SET doctor = ? WHERE patientId = ?;");
-
-            ps.setString(1, newValue);
-            ps.setString(2, patientId);
+                ps.setString(1, newValue);
+                ps.setString(2, patientId);
 
 
+            } else if (category.equals("nurse")) {
 
-          }else if(category.equals("information")){
+                ps = conn.prepareStatement("UPDATE patients SET nurse = ? WHERE patientId = ?;");
 
-            ps = conn.prepareStatement("UPDATE patients SET information = ? WHERE patientId = ?;");
-
-            ps.setString(1, newValue);
-            ps.setString(2, patientId);
-
-
-          }
+                ps.setString(1, newValue);
+                ps.setString(2, patientId);
 
 
-          if (ps.executeUpdate() == 1) {
-              return "Patient journal changed";
-          }
+            } else if (category.equals("doctor")) {
+
+                ps = conn.prepareStatement("UPDATE patients SET doctor = ? WHERE patientId = ?;");
+
+                ps.setString(1, newValue);
+                ps.setString(2, patientId);
+
+
+            } else if (category.equals("information")) {
+
+                ps = conn.prepareStatement("UPDATE patients SET information = ? WHERE patientId = ?;");
+
+                ps.setString(1, newValue);
+                ps.setString(2, patientId);
+
+
+            }
+
+
+            if (ps.executeUpdate() == 1) {
+                return "Patient journal changed";
+            }
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block

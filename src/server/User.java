@@ -48,10 +48,10 @@ abstract class User {
     //TODO type can be replaced by this instanceOf DOCTOR and so on...
     private boolean canExecuteCommand(Command command, Patient requestedPatient) {
         boolean approved = false;
-        if (type == AGENCY) {
+        if (type == AGENCY && (command instanceof ReadCommand || command instanceof DeleteCommand)) {
             approved = true;
         }
-        if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) { //TODO broken, need to be id instead
+        if (command instanceof ReadCommand && type == PATIENT && requestedPatient.getName().equals(nameOfPersonRequesting)) {
             approved = true;
         }
         if (command instanceof ReadCommand && type == NURSE) {
@@ -79,6 +79,15 @@ abstract class User {
         } else if (command instanceof AddCommand && type == DOCTOR) {
             approved = true;
 
+        } else if (command instanceof DeleteCommand && type == DOCTOR) {
+            if (requestedPatient.getDoctor().equals(nameOfPersonRequesting)) {
+                approved = true;
+            }
+        } else if (command instanceof DeleteCommand && type == NURSE) {
+            if (requestedPatient.getNurse().equals(nameOfPersonRequesting)) {
+                approved = true;
+            }
+
         }
         if (approved) {
             Logger.log(getClass().getSimpleName(), "Access Granted");
@@ -87,7 +96,7 @@ abstract class User {
             Logger.log(getClass().getSimpleName(), "Access Denied");
             return false;
         }
+
+
     }
-
-
 }
