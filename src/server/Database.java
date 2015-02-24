@@ -222,19 +222,21 @@ public class Database {
 
 
     public String modify(String info1, String info2, String info3) {
+        System.out.println(info1 + " "+ info2 + " " + info3);
+
 
 
         PreparedStatement ps;
 
         try {
-            ps = conn.prepareStatement("UPDATE patients SET ? = ? WHERE patientId = ?");
+            ps = conn.prepareStatement("UPDATE patients SET ? = ? WHERE patientId = ?;");
 
             ps.setString(1, info2);
             ps.setString(2, info3);
             ps.setString(3, info1);
 
 
-            if (ps.execute()) {
+            if (ps.executeUpdate() == 1) {
                 return "Patient journal changed";
             }
 

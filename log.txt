@@ -29,3 +29,76 @@ Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=D
 ServerConnection : Connected user is of type: Doctor
 ServerConnection : received 'Hehfd' from client.client
 CommandFactory : Unknown Command not supported: Hehfd
+ServerConnection : received 'Modify:Name;Alice' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:Name;Alice
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Read:6' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:6
+Doctor : Access Denied
+ServerConnection : received 'Read:5' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:5
+Doctor : Access Granted
+ServerConnection : received 'df' from client.client
+CommandFactory : Unknown Command not supported: df
+ServerConnection : received 'Modify:5;name;Alice' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:5;name;Alice
+Doctor : Access Denied
+ServerConnection : received 'Add:Xox;depB;somenurse;Olle;info about patient' from client.client
+CommandFactory : Received command is AddCommand from message: Add:Xox;depB;somenurse;Olle;info about patient
+Doctor : Access Granted
+ServerConnection : received 'Modify:7;name;Yuku' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;Yuku
+Doctor : Access Granted
+ServerConnection : received 'Read:7' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:7
+Doctor : Access Granted
+ServerConnection : received 'Read:7' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:7
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;WOW' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;WOW
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;wow' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;wow
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;wowow' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;wowow
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;wowowo' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;wowowo
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;we' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;we
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;sf' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;sf
+Doctor : Access Granted
+ServerConnection : received 'Read:7' from client.client
+CommandFactory : Received command is ReadCommand from message: Read:7
+Doctor : Access Granted
+Server : client.client connected
+Server : client.client getName: (cert subject DN field): CN=Olle, OU=Doctor, O=Dep A, L=Anytown, ST=City, C=SE
+ServerConnection : Connected user is of type: Doctor
+ServerConnection : received 'Modify:7;name;newName' from client.client
+CommandFactory : Received command is ModifyCommand from message: Modify:7;name;newName
+Doctor : Access Granted
