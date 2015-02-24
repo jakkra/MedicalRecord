@@ -118,12 +118,16 @@ public class Database {
             ps.setString(4, patient.getDoctor());
             ps.setString(5, patient.getInformation());
 
+            ps.execute();
+
+            ps = conn
+                    .prepareStatement("SELECT LAST_INSERT_ID();");
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
-                return rs.getString("patientId");
+                return rs.getString("LAST_INSERT_ID()");
             }
 
         } catch (SQLException e) {
@@ -191,6 +195,7 @@ public class Database {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+
                 list.add(new Patient(
                         rs.getString("name"),
                         rs.getString("department"),
